@@ -1,0 +1,28 @@
+{
+  "Shader": "path/to/shader.json",
+  "Textures": [
+    {
+      "Name": "diffuse",
+      "Path": "path/to/diffuse_texture.png"
+    },
+    {
+      "Name": "normal",
+      "Path": "path/to/normal_texture.png"
+    },
+    {
+      "Name": "specular",
+      "Path": "path/to/specular_texture.png"
+    }
+  ],
+  "ShaderParameters": {
+    "FloatParameters": {
+      "shininess": 32.0,
+      "opacity": 1.0
+    },
+    "Vec3Parameters": {
+      "ambientColor": [0.2, 0.2, 0.2],
+      "diffuseColor": [1.0, 1.0, 1.0],
+      "specularColor": [1.0, 1.0, 1.0]
+    }
+  }
+}

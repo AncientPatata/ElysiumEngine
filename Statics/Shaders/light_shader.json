@@ -1,0 +1,4 @@
+{
+  "Vertex Shader Source": "Shaders/vertlight.glsl",
+  "Fragment Shader Source": "Shaders/fraglight.glsl"
+}

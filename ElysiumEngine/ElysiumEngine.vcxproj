@@ -152,6 +152,9 @@
     <ClInclude Include="Core\Objects\Object.h" />
     <ClInclude Include="Core\Log.h" />
     <ClInclude Include="Core\Objects\ObjectManager.h" />
+    <ClInclude Include="Core\ResourceManager\Resource.h" />
+    <ClInclude Include="Core\ResourceManager\ResourceLoader.h" />
+    <ClInclude Include="Core\ResourceManager\ResourceManager.h" />
     <ClInclude Include="Core\Utils.h" />
     <ClInclude Include="Development\FreeCam.h" />
     <ClInclude Include="framework.h" />
@@ -159,11 +162,15 @@
     <ClInclude Include="Core\Input.h" />
     <ClInclude Include="Graphics\Camera.h" />
     <ClInclude Include="Graphics\Light.h" />
+    <ClInclude Include="Graphics\Material.h" />
     <ClInclude Include="Graphics\Mesh.h" />
     <ClInclude Include="Graphics\Shader.h" />
     <ClInclude Include="Graphics\Texture.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Core\Window.h" />
+    <ClInclude Include="Resources\MaterialResourceLoader.h" />
+    <ClInclude Include="Resources\ShaderResourceLoader.h" />
+    <ClInclude Include="Resources\TextureResourceLoader.h" />
     <ClInclude Include="vendor\glad\glad.h" />
     <ClInclude Include="vendor\GLFW\glfw3.h" />
     <ClInclude Include="vendor\GLFW\glfw3native.h" />
@@ -456,11 +463,16 @@
     <ClCompile Include="Core\Objects\Object.cpp" />
     <ClCompile Include="Core\Log.cpp" />
     <ClCompile Include="Core\Objects\ObjectManager.cpp" />
+    <ClCompile Include="Core\ResourceManager\Resource.cpp" />
+    <ClCompile Include="Core\ResourceManager\ResourceLoader.cpp" />
+    <ClCompile Include="Core\ResourceManager\ResourceManager.cpp" />
+    <ClCompile Include="Core\Utils.cpp" />
     <ClCompile Include="Development\FreeCam.cpp" />
     <ClCompile Include="ElysiumEngine.cpp" />
     <ClCompile Include="Core\Game.cpp" />
     <ClCompile Include="Core\Input.cpp" />
     <ClCompile Include="Graphics\Camera.cpp" />
+    <ClCompile Include="Graphics\Material.cpp" />
     <ClCompile Include="Graphics\Mesh.cpp" />
     <ClCompile Include="Graphics\Shader.cpp" />
     <ClCompile Include="Graphics\Texture.cpp" />
@@ -471,6 +483,9 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Core\Window.cpp" />
+    <ClCompile Include="Resources\MaterialResourceLoader.cpp" />
+    <ClCompile Include="Resources\ShaderResourceLoader.cpp" />
+    <ClCompile Include="Resources\TextureResourceLoader.cpp" />
     <ClCompile Include="vendor\glad.c" />
     <ClCompile Include="vendor\glm\detail\glm.cpp" />
   </ItemGroup>

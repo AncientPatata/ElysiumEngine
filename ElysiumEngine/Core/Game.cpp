@@ -3,12 +3,15 @@
 #include "Game.h"
 #include "Log.h"
 #include <chrono>   
+#include "../Core/ResourceManager/ResourceManager.h"
+#include "../Resources/ShaderResourceLoader.h"
 
 using namespace Core;
 
 Game::Game(int width, int height, std::string title)
     :m_Window(new Window(width, height, title))
 {
+
     // Configure the log instances
     Log::Instance().SetLogFile("engine.log");
     Log::Instance().SetLogLevelFilter(LogLevel::Debug);
@@ -18,6 +21,9 @@ Game::Game(int width, int height, std::string title)
     //Log::Instance().AddOutput(std::cout); // Output log messages to console
     Log::Instance().Out(LogLevel::Info) << "Game started";
 
+    // Register resource loaders (after log because they use it)
+    // Register the shader resource loader
+    ResourceManager::Instance().RegisterResourceLoader<Resources::ShaderResourceLoader>();
 }
 
 Game::~Game()

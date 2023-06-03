@@ -12,7 +12,8 @@
 using namespace Graphics;
 
 
-Shader::Shader(const std::string& vertexSource, const std::string& fragmentSource)
+Shader::Shader(const std::string& shaderAssetFilepath, const std::string& vertexSource, const std::string& fragmentSource)
+	: Core::Resource(shaderAssetFilepath)
 {
 
     GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);

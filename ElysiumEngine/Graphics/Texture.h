@@ -13,6 +13,10 @@ namespace Graphics {
 
         void Bind() const;
 
+        static std::string GetResourceType() {
+            return "Texture";
+        }
+
     private:
         GLuint m_textureID;
     };
