@@ -1,19 +1,6 @@
 {
-  "Shader": "path/to/shader.json",
-  "Textures": [
-    {
-      "Name": "diffuse",
-      "Path": "path/to/diffuse_texture.png"
-    },
-    {
-      "Name": "normal",
-      "Path": "path/to/normal_texture.png"
-    },
-    {
-      "Name": "specular",
-      "Path": "path/to/specular_texture.png"
-    }
-  ],
+  "Shader": "Shaders/light_shader.json",
+  "Textures": [],
   "ShaderParameters": {
     "FloatParameters": {
       "shininess": 32.0,

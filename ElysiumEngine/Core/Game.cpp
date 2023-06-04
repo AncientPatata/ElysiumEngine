@@ -5,6 +5,8 @@
 #include <chrono>   
 #include "../Core/ResourceManager/ResourceManager.h"
 #include "../Resources/ShaderResourceLoader.h"
+#include "../Resources/MaterialResourceLoader.h"
+
 
 using namespace Core;
 
@@ -24,6 +26,8 @@ Game::Game(int width, int height, std::string title)
     // Register resource loaders (after log because they use it)
     // Register the shader resource loader
     ResourceManager::Instance().RegisterResourceLoader<Resources::ShaderResourceLoader>();
+    ResourceManager::Instance().RegisterResourceLoader<Resources::MaterialResourceLoader>();
+
 }
 
 Game::~Game()
@@ -62,6 +66,9 @@ void Game::Run()
         previousTime = currentTime;
 
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+        //m_Window->HandleCursorClamping();
+
         m_Window->PollEvents();
 
 

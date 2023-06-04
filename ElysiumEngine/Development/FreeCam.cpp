@@ -7,7 +7,8 @@ using namespace Development;
 FirstPersonCamera::FirstPersonCamera(const glm::vec3& position, float yaw, float pitch, float fov, float aspectRatio, float nearPlane, float farPlane)
     : m_position(position), m_worldUp(glm::vec3(0.0f, 1.0f, 0.0f)), m_yaw(yaw), m_pitch(pitch),
     m_fov(fov), m_aspectRatio(aspectRatio), m_nearPlane(nearPlane), m_farPlane(farPlane),
-    m_movementSpeed(2.5f), m_mouseSensitivity(0.1f), m_firstMouse(true), m_lastX(0.0), m_lastY(0.0)
+    m_movementSpeed(2.5f), m_mouseSensitivity(0.1f), m_firstMouse(true), m_lastX(0.0), m_lastY(0.0),
+    Graphics::Camera(position, fov, aspectRatio, nearPlane, farPlane)
 {
     UpdateCameraVectors();
 }

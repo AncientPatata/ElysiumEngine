@@ -1,0 +1,4 @@
+{
+  "Vertex Shader Source": "Shaders/unlit_vertex.glsl",
+  "Fragment Shader Source": "Shaders/unlit_fragment.glsl"
+}

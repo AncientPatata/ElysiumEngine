@@ -12,8 +12,8 @@ namespace Core {
         Window(int width, int height, std::string title);
         ~Window();
 
-        void HideCursor() const;
-        void ShowCursor() const;
+        void HideCursor();
+        void ShowCursor();
 
         int GetWidth() const;
         int GetHeight() const;
@@ -22,11 +22,14 @@ namespace Core {
         void SwapBuffers();
         void PollEvents();
 
+        void HandleCursorClamping();
+
     private:
         GLFWwindow* m_window;
         int m_Width;
         int m_Height;
         std::string m_Title;
+        bool m_bCursorHidden;
     };
 
 }

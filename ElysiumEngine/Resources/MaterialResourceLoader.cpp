@@ -21,23 +21,15 @@ std::unique_ptr<Core::Resource> MaterialResourceLoader::Load(const std::string& 
 
     try
     {
-        try
-        {
-            nlohmann::json data = nlohmann::json::parse(Core::ReadFile(filePath));
+        nlohmann::json data = nlohmann::json::parse(Core::ReadFile(filePath));
 
-            const std::string& shaderAssetFilepath = data["Shader"].get<std::string>();
-            const std::string& texturesAssetFilepath = data["Textures"].get<std::string>();
-            const std::string& shaderParametersAssetFilepath = data["ShaderParameters"].get<std::string>();
+        const std::string& shaderAssetFilepath = data["Shader"].get<std::string>();
+        const nlohmann::json& texturesAsset = data["Textures"];
+        const nlohmann::json& shaderParameters = data["ShaderParameters"];
 
-            material->LoadShader(shaderAssetFilepath);
-            material->LoadTextures(texturesAssetFilepath);
-            material->LoadShaderParameters(shaderParametersAssetFilepath);
-
-        }
-        catch (nlohmann::json::exception& e)
-        {
-            Core::Log::Instance().Out(Core::LogLevel::Error) << "Failed to parse material asset file: " << e.what() << '\n';
-        }
+        material->LoadShader(shaderAssetFilepath);
+        material->LoadTextures(texturesAsset);
+        material->LoadShaderParameters(shaderParameters);
 
 
         return material;

@@ -10,8 +10,8 @@ namespace Graphics {
     public:
         Camera(const glm::vec3& position, float fov, float aspectRatio, float nearPlane, float farPlane);
 
-        glm::mat4 GetViewMatrix() const;
-        glm::mat4 GetProjectionMatrix() const;
+        virtual glm::mat4 GetViewMatrix() const;
+        virtual glm::mat4 GetProjectionMatrix() const;
 
     private:
         glm::vec3 m_position;

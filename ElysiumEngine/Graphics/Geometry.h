@@ -1,4 +1,4 @@
-// Mesh.h
+// Geometry.h
 #pragma once
 #include <vector>
 #include <string>
@@ -16,14 +16,14 @@ namespace Graphics {
         glm::vec2 texCoords;
     };
 
-    class Mesh
+    class Geometry
     {
     public:
-        Mesh(const std::vector<Vertex>& vertices, const std::vector<unsigned int>& indices);
-        ~Mesh();
+        Geometry(const std::vector<Vertex>& vertices, const std::vector<unsigned int>& indices);
+        ~Geometry();
 
-        void Draw(const glm::vec3& position, const glm::vec3& rotation, const glm::vec3& scale) const;
-        static Mesh* LoadObj(const std::string& path);
+        void Draw() const;
+        static Geometry* LoadObj(const std::string& path);
 
     private:
         GLuint m_VAO, m_VBO, m_EBO;

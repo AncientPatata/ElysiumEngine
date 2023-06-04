@@ -1,7 +1,6 @@
 // Material.cpp
 #include "Material.h"
 #include "../Core/Utils.h"
-#include "nlohmann/json.hpp"
 #include "../Core/Log.h"
 
 #include "../Core/ResourceManager/ResourceManager.h"
@@ -65,7 +64,9 @@ const Texture* Material::GetTexture(const std::string& name) const
 void Material::LoadShader(const std::string& shaderAssetFilepath)
 {
     try {
-        m_shader = std::make_unique<Graphics::Shader>(*Core::ResourceManager::Instance().Load<Graphics::Shader>(shaderAssetFilepath));
+        Core::Log::Instance().Out(Core::LogLevel::Info) << "Loading shader from file : " << shaderAssetFilepath << "\n";
+
+        m_shader = Core::ResourceManager::Instance().Load<Graphics::Shader>(shaderAssetFilepath);
     }
     catch (std::exception& e)
     {
@@ -74,11 +75,10 @@ void Material::LoadShader(const std::string& shaderAssetFilepath)
     }
 }
 
-void Material::LoadTextures(const std::string& texturesAssetFilepath)
+void Material::LoadTextures(nlohmann::json data)
 {
     try
     {
-        nlohmann::json data = nlohmann::json::parse(Core::ReadFile(texturesAssetFilepath));
 
         for (const auto& textureData : data)
         {
@@ -102,12 +102,10 @@ void Material::LoadTextures(const std::string& texturesAssetFilepath)
     }
 }
 
-void Material::LoadShaderParameters(const std::string& shaderParametersAssetFilepath)
+void Material::LoadShaderParameters(nlohmann::json data)
 {
     try
     {
-        nlohmann::json data = nlohmann::json::parse(Core::ReadFile(shaderParametersAssetFilepath));
-
         if (data.contains("FloatParameters"))
         {
             const nlohmann::json& floatParameters = data["FloatParameters"];

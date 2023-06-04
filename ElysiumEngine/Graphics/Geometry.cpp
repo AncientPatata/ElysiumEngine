@@ -1,5 +1,5 @@
-// Mesh.cpp
-#include "Mesh.h"
+// Geometry.cpp
+#include "Geometry.h"
 #include <glm/gtc/matrix_transform.hpp>
 #include <assimp/Importer.hpp>
 #include <assimp/scene.h>
@@ -8,7 +8,7 @@
 using namespace Graphics;
 
 
-Mesh::Mesh(const std::vector<Vertex>& vertices, const std::vector<unsigned int>& indices): m_indices(indices)
+Geometry::Geometry(const std::vector<Vertex>& vertices, const std::vector<unsigned int>& indices): m_indices(indices)
 {
     glGenVertexArrays(1, &m_VAO);
     glGenBuffers(1, &m_VBO);
@@ -34,22 +34,22 @@ Mesh::Mesh(const std::vector<Vertex>& vertices, const std::vector<unsigned int>&
     glBindVertexArray(0);
 }
 
-Mesh::~Mesh()
+Geometry::~Geometry()
 {
     glDeleteVertexArrays(1, &m_VAO);
     glDeleteBuffers(1, &m_VBO);
     glDeleteBuffers(1, &m_EBO);
 }
 
-void Mesh::Draw(const glm::vec3& position, const glm::vec3& rotation, const glm::vec3& scale) const
+void Geometry::Draw() const
 {
     // Calculate the transformation matrix
-    glm::mat4 modelMatrix = glm::mat4(1.0f);
-    modelMatrix = glm::translate(modelMatrix, position);
-    modelMatrix = glm::rotate(modelMatrix, glm::radians(rotation.x), glm::vec3(1.0f, 0.0f, 0.0f));
-    modelMatrix = glm::rotate(modelMatrix, glm::radians(rotation.y), glm::vec3(0.0f, 1.0f, 0.0f));
-    modelMatrix = glm::rotate(modelMatrix, glm::radians(rotation.z), glm::vec3(0.0f, 0.0f, 1.0f));
-    modelMatrix = glm::scale(modelMatrix, scale);
+    //glm::mat4 modelMatrix = glm::mat4(1.0f);
+    //modelMatrix = glm::translate(modelMatrix, position);
+    //modelMatrix = glm::rotate(modelMatrix, glm::radians(rotation.x), glm::vec3(1.0f, 0.0f, 0.0f));
+    //modelMatrix = glm::rotate(modelMatrix, glm::radians(rotation.y), glm::vec3(0.0f, 1.0f, 0.0f));
+    //modelMatrix = glm::rotate(modelMatrix, glm::radians(rotation.z), glm::vec3(0.0f, 0.0f, 1.0f));
+    //modelMatrix = glm::scale(modelMatrix, scale);
 
     // Set the model matrix in the shader program (assuming you have a shader program)
     // shaderProgram.SetUniformMatrix4fv("model", modelMatrix);
@@ -59,7 +59,7 @@ void Mesh::Draw(const glm::vec3& position, const glm::vec3& rotation, const glm:
     glDrawElements(GL_TRIANGLES, m_indices.size(), GL_UNSIGNED_INT, 0);
     glBindVertexArray(0);
 }
-Mesh* Mesh::LoadObj(const std::string& path)
+Geometry* Geometry::LoadObj(const std::string& path)
 {
     Assimp::Importer importer;
     const aiScene* scene = importer.ReadFile(path, aiProcess_Triangulate | aiProcess_FlipUVs | aiProcess_GenNormals);
@@ -109,5 +109,5 @@ Mesh* Mesh::LoadObj(const std::string& path)
     }
 
     // Create and return the mesh
-    return new Mesh(vertices, indices);
+    return new Geometry(vertices, indices);
 }

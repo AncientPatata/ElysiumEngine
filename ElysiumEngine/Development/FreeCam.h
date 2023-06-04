@@ -4,19 +4,19 @@
 #include "../vendor/glm/glm.hpp"
 #include "../vendor/glad/glad.h"
 #include "../vendor/GLFW/glfw3.h"
-
+#include "../Graphics/Camera.h"
 
 
 namespace Development {
 
-    class FirstPersonCamera
+    class FirstPersonCamera : public Graphics::Camera
     {
     public:
         FirstPersonCamera(const glm::vec3& position, float yaw, float pitch, float fov, float aspectRatio, float nearPlane, float farPlane);
         void ProcessKeyboardInput(float deltaTime);
         void ProcessMouseMovement(float xoffset, float yoffset, bool constrainPitch = true);
-        glm::mat4 GetViewMatrix() const;
-        glm::mat4 GetProjectionMatrix() const;
+        glm::mat4 GetViewMatrix() const override;
+        glm::mat4 GetProjectionMatrix() const override;
         void UpdateCameraVectors();
 
     private:

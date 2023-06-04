@@ -31,14 +31,16 @@ Window::~Window()
     glfwTerminate();
 }
 
-void Window::HideCursor() const
+void Window::HideCursor()
 {
-    glfwSetInputMode(m_window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
+    glfwSetInputMode(m_window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+    m_bCursorHidden = true;
 }
 
-void Window::ShowCursor() const
+void Window::ShowCursor()
 {
 	glfwSetInputMode(m_window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+    m_bCursorHidden = false;
 }
 
 int Window::GetWidth() const
@@ -64,4 +66,30 @@ void Window::SwapBuffers()
 void Window::PollEvents()
 {
     glfwPollEvents();
+}
+
+void Window::HandleCursorClamping()
+{
+    if (m_bCursorHidden)
+    {
+        // Handle cursor clamping
+        double cursorX, cursorY;
+        glfwGetCursorPos(m_window, &cursorX, &cursorY);
+        if (cursorX < 0.0) {
+            cursorX = 0.0;
+            glfwSetCursorPos(m_window, cursorX, cursorY);
+        }
+        else if (cursorX >= m_Width) {
+            cursorX = m_Width - 1;
+            glfwSetCursorPos(m_window, cursorX, cursorY);
+        }
+        if (cursorY < 0.0) {
+            cursorY = 0.0;
+            glfwSetCursorPos(m_window, cursorX, cursorY);
+        }
+        else if (cursorY >= m_Height) {
+            cursorY = m_Height - 1;
+            glfwSetCursorPos(m_window, cursorX, cursorY);
+        }
+    }
 }
